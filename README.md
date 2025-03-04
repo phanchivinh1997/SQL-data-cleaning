@@ -18,3 +18,97 @@ result
 |   Joete Cudiff|51|divorced|jcudiff7@ycombinator.com|616-617-0965|975 Dwight Plaza,Grand Rapids,Michigan|Research Nurse|11/16/2014|
 |mendie alexandrescu|46|single|malexandrescu8@state.gov|504-918-4753|34 Delladonna Terrace,New Orleans,Louisiana|Systems Administrator III|3/12/1921|
 | fey kloss|52|married|fkloss9@godaddy.com|808-177-0318|8976 Jackson Park,Honolulu,Hawaii|Chemical Engineer|11/5/2014|
+
+## Copy the table
+### Create a new table for cleaning
+Let's generate a new table where we can manipulate and restructure the data without modifying the original dataset.
+```
+CREATE TABLE club_member_info_cleaned (
+	full_name VARCHAR(50),
+	age INTEGER,
+	martial_status VARCHAR(50),
+	email VARCHAR(50),
+	phone VARCHAR(50),
+	full_address VARCHAR(50),
+	job_title VARCHAR(50),
+	membership_date VARCHAR(50)
+);
+```
+### Copy all values from original table
+```
+INSERT INTO club_member_info_cleaned 
+SELECT * FROM club_member_info;
+```
+### Identifying Invalid Age Entries
+```
+SELECT * FROM club_member_info_cleaned cmic 
+WHERE age < 18 OR age > 100 or age is NULL;
+```
+The result:
+|full_name|age|martial_status|email|phone|full_address|job_title|membership_date|
+|---------|---|--------------|-----|-----|------------|---------|---------------|
+|JORI SANZ|399|married|jsanz3i@google.cn|904-906-7537|99 West Crossing,Jacksonville,Florida|Professor|2/15/2012|
+|CARLYE GRAEBER|555|married|cgraeber6n@quantcast.com|214-345-1363|8 Dexter Junction,Dallas,Texas|Actuary|3/10/2021|
+|SHURWOOD STRUTLEY|544|married|sstrutley9w@craigslist.org|804-636-0234|7779 Main Road,Richmond,Virginia|Nuclear Power Engineer|6/30/2014|
+|CORBIN HILLAN|499|single|chillandg@time.com|267-229-4017|78 La Follette Trail,Philadelphia,Pennsylvania|Account Representative II|7/7/2021|
+|SMITTY BULMER|522|divorced|sbulmergm@addthis.com||23370 Forest Dale Street,Pittsburgh,Pennsylvania|VP Marketing|9/25/2017|
+|LEONORE BOOTHJARVIS||married|lboothjarvisi2@bloglines.com|713-618-0516|33110 Luster Plaza,Houston,Texas|Sales Representative|6/13/2022|
+|AUNDREA VILLAR|277|married|avillarm8@privacy.gov.au|571-942-0462|58201 Utah Terrace,Arlington,Virginia|Senior Sales Associate|6/28/2012|
+|CHERY BATISSE||divorced|cbatissen3@bandcamp.com|804-431-7226|604 Elgar Way,Richmond,Virginia|VP Product Management|7/30/2012|
+|ERINA AUBERT|288|married|eaubertqp@cargocollective.com|615-711-2470|2597 Hallows Road,Nashville,Tennessee|Automation Specialist II|11/2/2012|
+|BALDWIN RIPPEN|588|single|brippen1z@nationalgeographic.com|912-469-5562|2 Esker Alley,Savannah,Georgia|Web Developer II|12/1/2015|
+|CHERISE KRISTOFFERSSON|599|divorced|ckristoffersson59@sun.com|806-779-9348|72793 Northridge Park,Lubbock,Texas|Director of Sales|8/2/2021|
+|THORNDIKE PORTINGALE|677|married|tportingale9n@nsw.gov.au|941-186-3805|9011 Huxley Plaza,Sarasota,Florida|Statistician II|2/16/2019|
+|HASKELL BRADEN|322|divorced|hbradenri@freewebs.com|510-963-9848|35005 Waubesa Crossing,Berkeley,California|Dental Hygienist|11/4/2015|
+|MONTAGUE LATHAM|644|married|mlathame5@dailymotion.com|210-522-8041|0 Buhler Plaza,San Antonio,Texas|Administrative Officer|2/13/2021|
+|VIRGINA HUBBOCK||single|vhubbockep@ed.gov|540-535-0069|7 Schmedeman Center,Roanoke,Virginia|Media Manager I|7/6/2021|
+|ALVA DELL 'ORTO|411|married|adellhp@yale.edu|951-142-9340|10 Carpenter Lane,Riverside,California|Food Chemist|3/10/2019|
+|DENNI STALLARD|633|single|dstallardl9@devhub.com|816-567-5883|73737 Kinsman Street,Saint Joseph,Missouri|Nuclear Power Engineer|7/3/2018|
+|CATHRINE JONSON|222|married|cjonsonol@aboutads.info|559-318-4841|4147 Swallow Hill,Fresno,California|Speech Pathologist|4/26/2022|
+|Jori Sanz|399|married|jsanz3i@google.cn|904-906-7537|99 West Crossing,Jacksonville,Florida|Professor|2/15/2012|
+|Carlye Graeber|555|married|cgraeber6n@quantcast.com|214-345-1363|8 Dexter Junction,Dallas,Texas|Actuary|3/10/2021|
+|Shurwood Strutley|544|married|sstrutley9w@craigslist.org|804-636-0234|7779 Main Road,Richmond,Virginia|Nuclear Power Engineer|6/30/2014|
+|Corbin Hillan|499|single|chillandg@time.com|267-229-4017|78 La Follette Trail,Philadelphia,Pennsylvania|Account Representative II|7/7/2021|
+|Smitty Bulmer|522|divorced|sbulmergm@addthis.com||23370 Forest Dale Street,Pittsburgh,Pennsylvania|VP Marketing|9/25/2017|
+|Leonore BoothJarvis||married|lboothjarvisi2@bloglines.com|713-618-0516|33110 Luster Plaza,Houston,Texas|Sales Representative|6/13/2022|
+|Aundrea Villar|277|married|avillarm8@privacy.gov.au|571-942-0462|58201 Utah Terrace,Arlington,Virginia|Senior Sales Associate|6/28/2012|
+|Chery Batisse||divorced|cbatissen3@bandcamp.com|804-431-7226|604 Elgar Way,Richmond,Virginia|VP Product Management|7/30/2012|
+|erina aubert|288|married|eaubertqp@cargocollective.com|615-711-2470|2597 Hallows Road,Nashville,Tennessee|Automation Specialist II|11/2/2012|
+|Baldwin Rippen|588|single|brippen1z@nationalgeographic.com|912-469-5562|2 Esker Alley,Savannah,Georgia|Web Developer II|12/1/2015|
+|Cherise Kristoffersson|599|divorced|ckristoffersson59@sun.com|806-779-9348|72793 Northridge Park,Lubbock,Texas|Director of Sales|8/2/2021|
+|thorndike portingale|677|married|tportingale9n@nsw.gov.au|941-186-3805|9011 Huxley Plaza,Sarasota,Florida|Statistician II|2/16/2019|
+|Haskell Braden|322|divorced|hbradenri@freewebs.com|510-963-9848|35005 Waubesa Crossing,Berkeley,California|Dental Hygienist|11/4/2015|
+|Montague Latham|644|married|mlathame5@dailymotion.com|210-522-8041|0 Buhler Plaza,San Antonio,Texas|Administrative Officer|2/13/2021|
+|Virgina Hubbock||single|vhubbockep@ed.gov|540-535-0069|7 Schmedeman Center,Roanoke,Virginia|Media Manager I|7/6/2021|
+|Alva Dell 'Orto|411|married|adellhp@yale.edu|951-142-9340|10 Carpenter Lane,Riverside,California|Food Chemist|3/10/2019|
+|denni stallard|633|single|dstallardl9@devhub.com|816-567-5883|73737 Kinsman Street,Saint Joseph,Missouri|Nuclear Power Engineer|7/3/2018|
+|Cathrine Jonson|222|married|cjonsonol@aboutads.info|559-318-4841|4147 Swallow Hill,Fresno,California|Speech Pathologist|4/26/2022|
+|Jori Sanz|399|married|jsanz3i@google.cn|904-906-7537|99 West Crossing,Jacksonville,Florida|Professor|2/15/2012|
+|Carlye Graeber|555|married|cgraeber6n@quantcast.com|214-345-1363|8 Dexter Junction,Dallas,Texas|Actuary|3/10/2021|
+|Shurwood Strutley|544|married|sstrutley9w@craigslist.org|804-636-0234|7779 Main Road,Richmond,Virginia|Nuclear Power Engineer|6/30/2014|
+|Corbin Hillan|499|single|chillandg@time.com|267-229-4017|78 La Follette Trail,Philadelphia,Pennsylvania|Account Representative II|7/7/2021|
+|Smitty Bulmer|522|divorced|sbulmergm@addthis.com||23370 Forest Dale Street,Pittsburgh,Pennsylvania|VP Marketing|9/25/2017|
+|Leonore BoothJarvis||married|lboothjarvisi2@bloglines.com|713-618-0516|33110 Luster Plaza,Houston,Texas|Sales Representative|6/13/2022|
+|Aundrea Villar|277|married|avillarm8@privacy.gov.au|571-942-0462|58201 Utah Terrace,Arlington,Virginia|Senior Sales Associate|6/28/2012|
+|Chery Batisse||divorced|cbatissen3@bandcamp.com|804-431-7226|604 Elgar Way,Richmond,Virginia|VP Product Management|7/30/2012|
+|erina aubert|288|married|eaubertqp@cargocollective.com|615-711-2470|2597 Hallows Road,Nashville,Tennessee|Automation Specialist II|11/2/2012|
+|Baldwin Rippen|588|single|brippen1z@nationalgeographic.com|912-469-5562|2 Esker Alley,Savannah,Georgia|Web Developer II|12/1/2015|
+|Cherise Kristoffersson|599|divorced|ckristoffersson59@sun.com|806-779-9348|72793 Northridge Park,Lubbock,Texas|Director of Sales|8/2/2021|
+|thorndike portingale|677|married|tportingale9n@nsw.gov.au|941-186-3805|9011 Huxley Plaza,Sarasota,Florida|Statistician II|2/16/2019|
+|Haskell Braden|322|divorced|hbradenri@freewebs.com|510-963-9848|35005 Waubesa Crossing,Berkeley,California|Dental Hygienist|11/4/2015|
+|Montague Latham|644|married|mlathame5@dailymotion.com|210-522-8041|0 Buhler Plaza,San Antonio,Texas|Administrative Officer|2/13/2021|
+|Virgina Hubbock||single|vhubbockep@ed.gov|540-535-0069|7 Schmedeman Center,Roanoke,Virginia|Media Manager I|7/6/2021|
+|Alva Dell 'Orto|411|married|adellhp@yale.edu|951-142-9340|10 Carpenter Lane,Riverside,California|Food Chemist|3/10/2019|
+|denni stallard|633|single|dstallardl9@devhub.com|816-567-5883|73737 Kinsman Street,Saint Joseph,Missouri|Nuclear Power Engineer|7/3/2018|
+|Cathrine Jonson|222|married|cjonsonol@aboutads.info|559-318-4841|4147 Swallow Hill,Fresno,California|Speech Pathologist|4/26/2022|
+
+### Handling Invalid Age Entries with Mode Imputation
+```
+UPDATE club_member_info_cleaned 
+SET age = (SELECT MODE(age) from club_member_info_cleaned )
+WHERE age < 18 or age > 100 or age is NULL;
+```
+The result:
+
+![image](https://github.com/user-attachments/assets/5ebccc67-a02b-4d83-b2bc-77f6f5231f5f)
+
